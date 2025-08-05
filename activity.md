@@ -13,7 +13,7 @@ pip install pygame
 ```
 
 2. Fork the Snake Game Repository
-   • Go to the repository link your Lecturer provides (e.g., https://github.com/Lecturer-name/basic-snake-game)
+   • Go to the repository link your Lecturer provided: https://github.com/Robbo-lab/snake-game.git
    • Click the “Fork” button in the top-right corner
    • This creates a copy of the repository under your **own GitHub account**
 
@@ -84,18 +84,17 @@ git push origin change-snake-speed
 If the Lecturer updates the original repository and you want those updates, you can run:
 
 ```bash
-git remote add upstream https://github.com/Lecturer-USERNAME/basic-snake-game.git
+git remote add upstream https://github.com/Robbo-lab/snake-game.git
 git pull upstream main
 ```
 
 ## Optional Challenges
 
-If you finish early, try one or more of the following:
+If you finish early, try one or more of the following **but make a branch for each change**.
 
 1. Change the snake’s color
-2. Add a sound effect when the snake eats food
-3. Change the scoring system
-4. Rename the file snake_game.py to something else
+2. Change the scoring system
+3. Rename the file snake_game.py to something else
 
 ## Reflection - did you manage to do all of these?
 
