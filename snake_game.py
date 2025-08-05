@@ -26,6 +26,7 @@ pygame.display.set_caption("Snake Game")
 clock = pygame.time.Clock()
 font = pygame.font.Font(None, 36)
 small_font = pygame.font.Font(None, 24)
+eat_sound = pygame.mixer.Sound("eat.wav")
 
 def reset_game():
     """Reset game to initial snake with a long tail"""
@@ -172,6 +173,7 @@ while running:
 
         # If you get the food grow the snake
         if snake[0] == food:
+            eat_sound.play()
             snake = grow_snake(snake)
             score += 10
             food = generate_food(snake)
