@@ -8,13 +8,13 @@ pygame.init()
 # Constants
 WIDTH, HEIGHT = 600, 400
 CELL_SIZE = 20
-FPS = 12  # Controls motion
+FPS = 30  # Controls motion
 BORDER_WIDTH = 2
 
 # Colors
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
-GREEN = (34, 139, 34)
+BLACK = (255, 196, 203)
+WHITE = (255, 255, 0)
+GREEN = (0, 255, 255)
 DARK_GREEN = (0, 100, 0)
 RED = (220, 20, 60)
 BLUE = (70, 130, 180)
@@ -111,7 +111,7 @@ def move_snake(snake, direction):
 
 def grow_snake(snake):
     """Grow snake by one segment"""
-    return snake + [snake[-1]]
+    return snake + [snake[-2]]
 
 def check_collision(snake):
     """Check if snake collides with walls or itself"""
