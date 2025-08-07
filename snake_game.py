@@ -91,7 +91,7 @@ def draw_game_over(score):
     screen.blit(overlay, (0, 0))
     
     # Create the game over message
-    game_over_text = font.render("GAME OVER", True, RED)
+    game_over_text = font.render("ALBO IS COMING FOR YOU! COWER IN FEAR!", True, RED)
     score_text = font.render(f"Final Score: {score}", True, WHITE)
     restart_text = small_font.render("Press R to restart or ESC to quit", True, WHITE)
     
