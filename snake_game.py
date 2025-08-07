@@ -151,7 +151,7 @@ while running:
                 if event.key == pygame.K_SPACE:
                     paused = not paused
                 elif not paused:
-                    # Get tyhe direction from the keystroke event - up/down/left/right
+                    # Get the direction from the keystroke event - up/down/left/right
                     new_direction = None
                     if event.key == pygame.K_UP:
                         new_direction = (0, -CELL_SIZE)
@@ -167,7 +167,7 @@ while running:
 
     # Game logic
     if not paused and not game_over:
-        # Take the direction event and the snkae & move
+        # Take the direction event and the snake & move
         snake = move_snake(snake, direction)
 
         # If you get the food grow the snake
