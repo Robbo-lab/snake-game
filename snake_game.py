@@ -49,7 +49,7 @@ def draw_snake(snake):
     for i, segment in enumerate(snake):
         color = DARK_GREEN if i == 0 else GREEN
         pygame.draw.rect(screen, color, (*segment, CELL_SIZE, CELL_SIZE))
-        pygame.draw.rect(screen, WHITE, (*segment, CELL_SIZE, CELL_SIZE), 1)
+        pygame.draw.rect(screen, BLACK, (*segment, CELL_SIZE, CELL_SIZE), 1)
 
 def draw_food(food):
     """Draw food with better visuals"""
