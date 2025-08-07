@@ -117,10 +117,15 @@ def check_collision(snake):
     """Check if snake collides with walls or itself"""
     head = snake[0]
     return (
-        head in snake[1:] or
+
         head[0] < 0 or head[0] >= WIDTH or
         head[1] < 0 or head[1] >= HEIGHT
     )
+def check_collision2(snake):
+    """Check if snake collides  itself"""
+    head = snake[0]
+    return (
+            head in snake[1:])
 
 def get_opposite_direction(direction):
     """Get opposite direction to prevent reverse moves"""
@@ -177,8 +182,11 @@ while running:
             food = generate_food(snake)
 
         # If we hit the side of the screen end the game
-        if check_collision(snake):
+        if check_collision2(snake):
             game_over = True
+        if check_collision(snake):
+            loop_x, loop_y = WIDTH // 2, HEIGHT // 2
+            snake = [(loop_x - i * CELL_SIZE, loop_y) for i in range(score)]
 
     # Draw everything
     screen.fill(BLACK)
