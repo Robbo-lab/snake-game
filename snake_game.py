@@ -91,7 +91,7 @@ def draw_game_over(score):
     screen.blit(overlay, (0, 0))
     
     # Create the game over message
-    game_over_text = font.render("GAME OVER", True, RED)
+    game_over_text = font.render("2FAST4U", True, RED)
     score_text = font.render(f"Final Score: {score}", True, WHITE)
     restart_text = small_font.render("Press R to restart or ESC to quit", True, WHITE)
     
@@ -142,6 +142,7 @@ while running:
             running = False
         elif event.type == pygame.KEYDOWN:
             if game_over:
+                FPS = 12
                 if event.key == pygame.K_r:
                     snake, direction, food, score = reset_game()
                     game_over = False
@@ -151,7 +152,7 @@ while running:
                 if event.key == pygame.K_SPACE:
                     paused = not paused
                 elif not paused:
-                    # Get tyhe direction from the keystroke event - up/down/left/right
+                    # Get the direction from the keystroke event - up/down/left/right
                     new_direction = None
                     if event.key == pygame.K_UP:
                         new_direction = (0, -CELL_SIZE)
@@ -167,7 +168,7 @@ while running:
 
     # Game logic
     if not paused and not game_over:
-        # Take the direction event and the snkae & move
+        # Take the direction event and the snake & move
         snake = move_snake(snake, direction)
 
         # If you get the food grow the snake
@@ -175,6 +176,7 @@ while running:
             snake = grow_snake(snake)
             score += 10
             food = generate_food(snake)
+            FPS += 4
 
         # If we hit the side of the screen end the game
         if check_collision(snake):
