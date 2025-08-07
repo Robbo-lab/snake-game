@@ -22,13 +22,17 @@ GRAY = (128, 128, 128)
 
 # Set up display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Eel Game")
+<<<<<<< HEAD
+pygame.display.set_caption("Eel Game 2")
+=======
 clock = pygame.time.Clock()
-font = pygame.font.Font(None, 36)
-small_font = pygame.font.Font(None, 24)
+font = pygame.font.Font(None, 50)
+small_font = pygame.font.Font(None, 50)
 
 def reset_game():
+<<<<<<< HEAD
     """Reset game to initial eel with a long tail"""
+=======
     start_x, start_y = WIDTH // 2, HEIGHT // 2
     eel = [(start_x - i * CELL_SIZE, start_y) for i in range(10)]  # Sets the tail size
     direction = (CELL_SIZE, 0)
@@ -91,9 +95,11 @@ def draw_game_over(score):
     screen.blit(overlay, (0, 0))
     
     # Create the game over message
+<<<<<<< HEAD
     game_over_text = font.render("GAME OVER", True, CRAB)
     score_text = font.render(f"Crabs Consumed: {score}", True, WHITE)
     restart_text = small_font.render("Press R to continue eating or ESC to flee", True, WHITE)
+=======
     
     game_over_rect = game_over_text.get_rect(center=(WIDTH//2, HEIGHT//2 - 40))
     score_rect = score_text.get_rect(center=(WIDTH//2, HEIGHT//2))
@@ -142,6 +148,7 @@ while running:
             running = False
         elif event.type == pygame.KEYDOWN:
             if game_over:
+                FPS = 12
                 if event.key == pygame.K_r:
                     eel, direction, food, score = reset_game()
                     game_over = False
@@ -151,7 +158,7 @@ while running:
                 if event.key == pygame.K_SPACE:
                     paused = not paused
                 elif not paused:
-                    # Get tyhe direction from the keystroke event - up/down/left/right
+                    # Get the direction from the keystroke event - up/down/left/right
                     new_direction = None
                     if event.key == pygame.K_UP:
                         new_direction = (0, -CELL_SIZE)
@@ -167,6 +174,7 @@ while running:
 
     # Game logic
     if not paused and not game_over:
+<<<<<<< HEAD
         # Take the direction event and the snkae & move
         eel = move_eel(eel, direction)
 
@@ -174,7 +182,9 @@ while running:
         if eel[0] == food:
             eel = grow_eel(eel)
             score += 10
+<<<<<<< HEAD
             food = generate_food(eel)
+
 
         # If we hit the side of the screen end the game
         if check_collision(eel):
