@@ -22,13 +22,13 @@ GRAY = (128, 128, 128)
 
 # Set up display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Snake Game")
+pygame.display.set_caption("Snake Game 2")
 clock = pygame.time.Clock()
-font = pygame.font.Font(None, 36)
-small_font = pygame.font.Font(None, 24)
+font = pygame.font.Font(None, 50)
+small_font = pygame.font.Font(None, 50)
 
 def reset_game():
-    """Reset game to initial snake with a long tail"""
+    """Rest game to initial snake with a long tail"""
     start_x, start_y = WIDTH // 2, HEIGHT // 2
     snake = [(start_x - i * CELL_SIZE, start_y) for i in range(10)]  # Sets the tail size
     direction = (CELL_SIZE, 0)
@@ -142,6 +142,7 @@ while running:
             running = False
         elif event.type == pygame.KEYDOWN:
             if game_over:
+                FPS = 12
                 if event.key == pygame.K_r:
                     snake, direction, food, score = reset_game()
                     game_over = False
@@ -175,6 +176,7 @@ while running:
             snake = grow_snake(snake)
             score += 10
             food = generate_food(snake)
+            FPS += 4
 
         # If we hit the side of the screen end the game
         if check_collision(snake):
