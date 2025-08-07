@@ -25,7 +25,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("鸡屁股")
 clock = pygame.time.Clock()
 font = pygame.font.Font(None, 96)
-small_font = pygame.font.Font(None, 24)
+small_font = pygame.font.Font(None, 44)
 
 def reset_game():
     """Reset game to initial snake with a long tail"""
