@@ -28,7 +28,7 @@ font = pygame.font.Font(None, 36)
 small_font = pygame.font.Font(None, 24)
 
 def reset_game():
-    """Reset game to initial snake with a long tail"""
+    """Rest game to initial snake with a long tail"""
     start_x, start_y = WIDTH // 2, HEIGHT // 2
     snake = [(start_x - i * CELL_SIZE, start_y) for i in range(10)]  # Sets the tail size
     direction = (CELL_SIZE, 0)
