@@ -8,7 +8,7 @@ pygame.init()
 # Constants
 WIDTH, HEIGHT = 600, 400
 CELL_SIZE = 20
-FPS = 12  # Controls motion
+FPS = 10  # Controls motion
 BORDER_WIDTH = 2
 
 # Colors
