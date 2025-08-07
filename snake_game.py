@@ -22,10 +22,10 @@ GRAY = (128, 128, 128)
 
 # Set up display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Snake Game")
+pygame.display.set_caption("Snake Game 2")
 clock = pygame.time.Clock()
-font = pygame.font.Font(None, 36)
-small_font = pygame.font.Font(None, 24)
+font = pygame.font.Font(None, 50)
+small_font = pygame.font.Font(None, 50)
 
 def reset_game():
     """Reset game to initial snake with a long tail"""
