@@ -185,7 +185,7 @@ while running:
         if check_collision2(snake):
             game_over = True
         if check_collision(snake):
-            loop_x, loop_y = WIDTH // 2, HEIGHT // 2
+            loop_x, loop_y = WIDTH // 4, HEIGHT // 4
             snake = [(loop_x - i * CELL_SIZE, loop_y) for i in range(score)]
 
     # Draw everything
