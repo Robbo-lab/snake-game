@@ -6,10 +6,10 @@ import random
 pygame.init()
 
 # Constants
-WIDTH, HEIGHT = 600, 400
+WIDTH, HEIGHT = 900, 200
 CELL_SIZE = 20
-FPS = 12  # Controls motion
-BORDER_WIDTH = 2
+FPS = 24  # Controls motion
+BORDER_WIDTH = 0
 
 # Colors
 BLACK = (0, 0, 0)
@@ -22,14 +22,14 @@ GRAY = (128, 128, 128)
 
 # Set up display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Snake Game")
+pygame.display.set_caption("鸡屁股")
 clock = pygame.time.Clock()
-font = pygame.font.Font(None, 36)
+font = pygame.font.Font(None, 96)
 small_font = pygame.font.Font(None, 24)
 
 def reset_game():
     """Reset game to initial snake with a long tail"""
-    start_x, start_y = WIDTH // 2, HEIGHT // 2
+    start_x, start_y = WIDTH // 2, HEIGHT // 20
     snake = [(start_x - i * CELL_SIZE, start_y) for i in range(10)]  # Sets the tail size
     direction = (CELL_SIZE, 0)
     food = generate_food(snake)
@@ -62,9 +62,9 @@ def draw_border():
 
 def draw_score(score):
     """Draw current score"""
-    score_text = small_font.render(f"Score: {score}", True, WHITE)
+    score_text = small_font.render(f"猴子球: {score}", True, WHITE)
     # Place it on the display
-    screen.blit(score_text, (10, 10))
+    screen.blit(score_text, (100, 10))
 
 def draw_pause_screen():
     """Draw pause overlay"""
@@ -74,7 +74,7 @@ def draw_pause_screen():
     screen.blit(overlay, (0, 0))
     
     pause_text = font.render("PAUSED", True, WHITE)
-    continue_text = small_font.render("Press SPACE to continue", True, WHITE)
+    continue_text = small_font.render("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", True, WHITE)
     
     # Centre everything
     pause_rect = pause_text.get_rect(center=(WIDTH//2, HEIGHT//2 - 20))
@@ -86,16 +86,16 @@ def draw_pause_screen():
 def draw_game_over(score):
     """Draw game over screen"""
     overlay = pygame.Surface((WIDTH, HEIGHT))
-    overlay.set_alpha(200)
+    overlay.set_alpha(900)
     overlay.fill(BLACK)
     screen.blit(overlay, (0, 0))
     
     # Create the game over message
-    game_over_text = font.render("GAME OVER", True, RED)
-    score_text = font.render(f"Final Score: {score}", True, WHITE)
-    restart_text = small_font.render("Press R to restart or ESC to quit", True, WHITE)
+    game_over_text = font.render("YOU STUPID IDIOT", True, RED)
+    score_text = font.render(f"猴子球: {score}", True, WHITE)
+    restart_text = small_font.render("Press R to restart or ESC to GET HEMMOROIDS NOW", True, WHITE)
     
-    game_over_rect = game_over_text.get_rect(center=(WIDTH//2, HEIGHT//2 - 40))
+    game_over_rect = game_over_text.get_rect(center=(WIDTH//2, HEIGHT//1 - 40))
     score_rect = score_text.get_rect(center=(WIDTH//2, HEIGHT//2))
     restart_rect = restart_text.get_rect(center=(WIDTH//2, HEIGHT//2 + 40))
     
@@ -107,7 +107,7 @@ def move_snake(snake, direction):
     """Move snake forward"""
     head_x, head_y = snake[0]
     new_head = (head_x + direction[0], head_y + direction[1])
-    return [new_head] + snake[:-1]
+    return [new_head] + snake[:-100]
 
 def grow_snake(snake):
     """Grow snake by one segment"""
@@ -154,13 +154,13 @@ while running:
                     # Get tyhe direction from the keystroke event - up/down/left/right
                     new_direction = None
                     if event.key == pygame.K_UP:
-                        new_direction = (0, -CELL_SIZE)
+                        new_direction = (30, -CELL_SIZE)
                     elif event.key == pygame.K_DOWN:
-                        new_direction = (0, CELL_SIZE)
+                        new_direction = (-10, CELL_SIZE)
                     elif event.key == pygame.K_LEFT:
-                        new_direction = (-CELL_SIZE, 0)
+                        new_direction = (-CELL_SIZE, 10)
                     elif event.key == pygame.K_RIGHT:
-                        new_direction = (CELL_SIZE, 0)
+                        new_direction = (CELL_SIZE, 2)
 
                     if new_direction and new_direction != get_opposite_direction(direction):
                         direction = new_direction
