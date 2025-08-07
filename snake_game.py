@@ -62,7 +62,7 @@ def draw_border():
 
 def draw_score(score):
     """Draw current score"""
-    score_text = small_font.render(f"Score: {score}", True, WHITE)
+    score_text = small_font.render(f"Score: {score}", True, GREEN)
     # Place it on the display
     screen.blit(score_text, (10, 10))
 
