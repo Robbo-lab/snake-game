@@ -19,6 +19,7 @@ DARK_GREEN = (0, 100, 0)
 RED = (220, 20, 60)
 BLUE = (70, 130, 180)
 GRAY = (128, 128, 128)
+SILVER = (192, 192, 192)
 
 # Set up display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -53,8 +54,8 @@ def draw_snake(snake):
 
 def draw_food(food):
     """Draw food with better visuals"""
-    pygame.draw.rect(screen, RED, (*food, CELL_SIZE, CELL_SIZE))
-    pygame.draw.rect(screen, WHITE, (*food, CELL_SIZE, CELL_SIZE), 1)
+    pygame.draw.rect(screen, SILVER, (*food, CELL_SIZE, CELL_SIZE))
+    pygame.draw.rect(screen, RED, (*food, CELL_SIZE, CELL_SIZE), 1)
 
 def draw_border():
     """Draw game border"""
