@@ -1,0 +1,52 @@
+    1  ls -al
+    2  pwd
+    3  dir
+    4  cd Documents/
+    5  cls
+    6  cd ~
+    7  cd %USERPROFILE%
+    8  cd Documents/
+    9  mkdir myfolder
+   10  dir
+   11  rmdir myfolder/
+   12  cd myfolder
+   13  dir
+   14  mkdir folder1
+   15  cd folder1/
+   16  cd ..
+   17  cd folder1/
+   18  echo. > file.txt
+   19  touch file.txt
+   20  dir
+   21  nano file.txt
+   22  nano file.txt
+   23  code .
+   24  code .
+   25  del file.txt
+   26  rm file.txt
+   27  dit
+   28  dir
+   29  touch file.txt
+   30  nano file.txt
+   31  history
+   32  dir
+   33  cp file.txt
+   34  cp file.txt ~/Downloads
+   35  cd ../Downloads
+   36  cd ..
+   37  dir
+   38  cd folder1
+   39  dir
+   40  cp file.txt ~/CIV\ IOT
+   41  git --version
+   42  git --help
+   43  clr
+   44  clear
+   45  clear
+   46  ps
+   47  kill 1998
+   48  whoami
+   49  systeminfo
+   50  clear
+   51  history
+   52  history > history.txt
