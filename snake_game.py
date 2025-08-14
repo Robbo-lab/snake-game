@@ -1,14 +1,15 @@
 import pygame
 import sys
 import random
+import time
 
-# Starts the game
+# Initialize
 pygame.init()
 
 # Constants
 WIDTH, HEIGHT = 600, 400
-CELL_SIZE = 20
-FPS = 12  # Controls motion
+CELL_SIZE = 5
+FPS = 12
 BORDER_WIDTH = 2
 
 # Colors
@@ -19,25 +20,32 @@ DARK_EEL = (114,113,47,255)
 CRAB = (222, 101, 31    )
 BLUE = (70, 130, 180)
 GRAY = (128, 128, 128)
+FLASH_COLORS = [RED, GREEN, BLUE, WHITE, GRAY, (255, 0, 255), (0, 255, 255)]
 
-# Set up display
+# Display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 <<<<<<< HEAD
 pygame.display.set_caption("Eel Game 2")
 =======
 clock = pygame.time.Clock()
-font = pygame.font.Font(None, 50)
-small_font = pygame.font.Font(None, 50)
+font = pygame.font.Font(None, 36)
+small_font = pygame.font.Font(None, 24)
+
 
 def reset_game():
 <<<<<<< HEAD
     """Reset game to initial eel with a long tail"""
 =======
     start_x, start_y = WIDTH // 2, HEIGHT // 2
+    snake = [(start_x - i * CELL_SIZE, start_y) for i in range(10)]
     eel = [(start_x - i * CELL_SIZE, start_y) for i in range(10)]  # Sets the tail size
     direction = (CELL_SIZE, 0)
+    food = generate_food(snake)
+    fake_food = generate_food(snake + [food])
     food = generate_food(eel)
     score = 0
+    return snake, direction, food, fake_food, score
+
     return eel, direction, food, score
 
 def generate_food(eel):
@@ -55,14 +63,16 @@ def draw_eel(eel):
         pygame.draw.rect(screen, color, (*segment, CELL_SIZE, CELL_SIZE))
         pygame.draw.rect(screen, WHITE, (*segment, CELL_SIZE, CELL_SIZE), 1)
 
+
 def draw_food(food):
     """Draw food with better visuals"""
     pygame.draw.rect(screen, CRAB, (*food, CELL_SIZE, CELL_SIZE))
     pygame.draw.rect(screen, WHITE, (*food, CELL_SIZE, CELL_SIZE), 1)
 
+
 def draw_border():
-    """Draw game border"""
     pygame.draw.rect(screen, WHITE, (0, 0, WIDTH, HEIGHT), BORDER_WIDTH)
+
 
 def draw_score(score):
     """Draw current score"""
@@ -70,25 +80,19 @@ def draw_score(score):
     # Place it on the display
     screen.blit(score_text, (10, 10))
 
+
 def draw_pause_screen():
-    """Draw pause overlay"""
     overlay = pygame.Surface((WIDTH, HEIGHT))
     overlay.set_alpha(128)
     overlay.fill(SEA)
     screen.blit(overlay, (0, 0))
-    
     pause_text = font.render("PAUSED", True, WHITE)
     continue_text = small_font.render("Press SPACE to continue", True, WHITE)
-    
-    # Centre everything
-    pause_rect = pause_text.get_rect(center=(WIDTH//2, HEIGHT//2 - 20))
-    continue_rect = continue_text.get_rect(center=(WIDTH//2, HEIGHT//2 + 20))
-    
-    screen.blit(pause_text, pause_rect)
-    screen.blit(continue_text, continue_rect)
+    screen.blit(pause_text, pause_text.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 20)))
+    screen.blit(continue_text, continue_text.get_rect(center=(WIDTH // 2, HEIGHT // 2 + 20)))
+
 
 def draw_game_over(score):
-    """Draw game over screen"""
     overlay = pygame.Surface((WIDTH, HEIGHT))
     overlay.set_alpha(200)
     overlay.fill(SEA)
@@ -119,6 +123,8 @@ def grow_eel(eel):
     """Grow eel by one segment"""
     return eel + [eel[-1]]
 
+def check_collision(snake):
+    head = snake[0]
 def check_collision(eel):
     """Check if eel collides with walls or itself"""
     head = eel[0]
@@ -128,8 +134,8 @@ def check_collision(eel):
         head[1] < 0 or head[1] >= HEIGHT
     )
 
+
 def get_opposite_direction(direction):
-    """Get opposite direction to prevent reverse moves"""
     return (-direction[0], -direction[1])
 
 # Set up the game
@@ -137,12 +143,11 @@ eel, direction, food, score = reset_game()
 game_over = False
 paused = False
 
-# Game loop
 running = True
 while running:
     clock.tick(FPS)
 
-    # Handle events
+    # Events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -158,7 +163,6 @@ while running:
                 if event.key == pygame.K_SPACE:
                     paused = not paused
                 elif not paused:
-                    # Get the direction from the keystroke event - up/down/left/right
                     new_direction = None
                     if event.key == pygame.K_UP:
                         new_direction = (0, -CELL_SIZE)
@@ -168,16 +172,31 @@ while running:
                         new_direction = (-CELL_SIZE, 0)
                     elif event.key == pygame.K_RIGHT:
                         new_direction = (CELL_SIZE, 0)
-
                     if new_direction and new_direction != get_opposite_direction(direction):
                         direction = new_direction
 
-    # Game logic
     if not paused and not game_over:
 <<<<<<< HEAD
         # Take the direction event and the snkae & move
         eel = move_eel(eel, direction)
 
+        # Real food
+        if snake[0] == food:
+            snake = grow_snake(snake)
+            score += 100
+            food = generate_food(snake)
+            fake_food = generate_food(snake + [food])
+
+        # Fake food
+        if snake[0] == fake_food:
+            score -= 300
+            snake = snake[:-10] if len(snake) > 20 else snake
+            fake_food = generate_food(snake + [food])
+
+        # Move real food away from snake head
+        food = move_food_away(food, snake[0])
+
+        if check_collision(snake):
         # If you get the food grow the eel
         if eel[0] == food:
             eel = grow_eel(eel)
@@ -195,12 +214,28 @@ while running:
     draw_border()
     draw_eel(eel)
     draw_food(food)
+    draw_food(fake_food)
     draw_score(score)
 
     if paused and not game_over:
         draw_pause_screen()
     elif game_over:
         draw_game_over(score)
+
+    # Random screen rotation every second
+    current_time = time.time()
+    if current_time - last_rotation_time >= 1:
+        rotation_angle = random.randint(-360, 360)
+        last_rotation_time = current_time
+
+        # Teleport real food to new random spot (not on snake)
+        food = generate_food(snake)
+
+    if rotation_angle != 0:
+        rotated_screen = pygame.transform.rotate(screen, rotation_angle)
+        rect = rotated_screen.get_rect(center=screen.get_rect().center)
+        screen.fill(BLACK)
+        screen.blit(rotated_screen, rect.topleft)
 
     pygame.display.flip()
 
