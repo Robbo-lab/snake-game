@@ -16,9 +16,9 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (34, 1, 34)
 DARK_GREEN = (0, 160, 0)
-RED = (220, 60, 60)
-BLUE = (70, 130, 180)
-GRAY = (128, 128, 128)
+RED = (220, 255, 255)
+BLUE = (30, 130, 180)
+GRAY = (128, 128, 255)
 
 # Set up display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
